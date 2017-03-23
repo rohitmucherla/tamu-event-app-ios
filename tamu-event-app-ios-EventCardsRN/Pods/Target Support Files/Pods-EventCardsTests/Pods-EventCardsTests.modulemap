@@ -1,0 +1,6 @@
+framework module Pods_EventCardsTests {
+  umbrella header "Pods-EventCardsTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
