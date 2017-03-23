@@ -29,23 +29,8 @@ class NewViewController: UIViewController, UICollectionViewDataSource, UICollect
     @IBOutlet weak var collectionViewGallery: UICollectionView!
     
     
-    //Variable lets us import our events struct
-    var eventsVar = ViewController.events()
-    
-    
-    //This action opens up eventsVar.directionsURL in Apple Maps
-    @IBAction func addressButtonAction(_ sender: Any) {
-        
-        var directions = eventsVar.addressStreet + " " + eventsVar.city + " " + eventsVar.state
-        directions = directions.replacingOccurrences(of: " ", with: "+")
-        eventsVar.directionsURL = eventsVar.directionsURL + directions
-        
-        if let url = NSURL(string: eventsVar.directionsURL) {
-            UIApplication.shared.open(url as URL)
-        }
-        
-    }
-    
+    //indexP is the indexPath for the selected cell
+    var indexP: Int = 0
     
     
     //Variables we need to instantiate for later
@@ -58,9 +43,24 @@ class NewViewController: UIViewController, UICollectionViewDataSource, UICollect
     
     
     
+    //This action opens up eventsVar.directionsURL in Apple Maps
+    @IBAction func addressButtonAction(_ sender: Any) {
+        
+        var directions = eventsClass[indexP].eventAddressStreet + " " + eventsClass[indexP].eventCity + " " + eventsClass[indexP].eventState
+        directions = directions.replacingOccurrences(of: " ", with: "+")
+        eventsClass[indexP].eventDirectionsURL = eventsClass[indexP].eventDirectionsURL + directions
+        
+        if let url = NSURL(string: eventsClass[indexP].eventDirectionsURL) {
+            UIApplication.shared.open(url as URL)
+        }
+        eventsClass[indexP].eventDirectionsURL = "http://maps.apple.com/?q="
+    }
+    
+    
+    
     //Basically, if the view loads we want to do this code:
     override func viewDidLoad() {
-        super.viewDidLoad()                                     //I'm not really sure what this does, but I know it's important
+        super.viewDidLoad()                              //I'm not really sure what this does, but I know it's important
         
         //Assigning the icon images
         priceImageEvent.image = UIImage(named: "currency-usd copy")!
@@ -69,18 +69,19 @@ class NewViewController: UIViewController, UICollectionViewDataSource, UICollect
         
         //Assigning the data to the labels, this data was passed here from ViewController.swift
         titleLabelEvent.text = titleLabelE
-        addressButtonLabel.setTitle(addressLabelE, for: UIControlState.normal)              //Sets the text of the address button
+        addressButtonLabel.setTitle(addressLabelE, for: UIControlState.normal)          //Sets the text of the address button
         imageView.image = topImageE
         dateLabelEvent.text = dateLabelE
         priceLabelEvent.text = priceLabelE
         detailsLabelEvent.text = detailsLabelE
+        
     }
     
     
     
-    //Setting up the number of cells in our gallery
+    //Setting up the number of cells in our gallery, it is temporarily 1
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventsVar.galleryPics.count
+        return 1
     }
     
     
@@ -89,7 +90,7 @@ class NewViewController: UIViewController, UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let EPCell = collectionView.dequeueReusableCell(withReuseIdentifier: "EPCell", for: indexPath) as! EventPageCVCell
-        EPCell.EPImageView.image = eventsVar.galleryPics[indexPath.row]
+        EPCell.EPImageView.image = eventsClass[indexP].eventGalleryPics
         
         return EPCell
     }
@@ -107,15 +108,15 @@ class NewViewController: UIViewController, UICollectionViewDataSource, UICollect
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showImage"
         {
-            let indexPaths = collectionViewGallery!.indexPathsForSelectedItems!
-            let indexPath = indexPaths[0] as NSIndexPath                  //Grabbing the index path of the cell the user touches so we can pull the right data
+            //let indexPaths = collectionViewGallery!.indexPathsForSelectedItems!
+            //let indexPath = indexPaths[0] as NSIndexPath                  //Grabbing the index path of the cell the user touches so we can pull the right data
             
             
             let vd = segue.destination as! imageViewController            //Allows us to manipulate elements in imageViewController
             
             
             //Passing data from the event struct to our image variable in imageViewController
-            vd.imageV = eventsVar.galleryPics[indexPath.row]!
+            vd.imageV = eventsClass[indexP].eventGalleryPics
         }
     }
     

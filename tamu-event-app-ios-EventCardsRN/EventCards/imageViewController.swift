@@ -27,7 +27,6 @@ class imageViewController: UIViewController {
     //If the view loads, set the image view to our variable we set in NewViewController.swift
     override func viewDidLoad() {
         super.viewDidLoad()
-
         imageView.image = imageV
     }
 

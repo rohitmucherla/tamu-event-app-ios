@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  SavedEventsViewController.swift
 //  EventCards
 //
 //  Created by Riley Norris on 2/24/17.
@@ -11,28 +11,18 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 
 
-//For those that don't know, this file is the basis of the program. It basically edits the homepage
+//This file generates the saved events
 
 
 
-//Instantiating these class variables outside of a class lets you use them in every file
-var savedEventsClass = [SavedEvent]()
-let eventsClass = Event.generateEventArray()
-
-
-
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
+class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     
-    @IBOutlet weak var open: UIBarButtonItem!
-    @IBOutlet weak var buttonTo2: UIBarButtonItem!          //This is the outlet to the button for the side bar
-    @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
+
+    
+    @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
     @IBOutlet weak var searchBar: UISearchBar!
     
-    
-    
-    //All the variables we need later, stored in a struct
-
     
     
     //These add gestures and a button to the side bar
@@ -40,8 +30,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         searchBar.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
-        buttonTo2.target = self.revealViewController()
-        buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
+    }
+    
+    
+    
+    //This refreshes the view
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        collectionView.reloadData()
     }
     
     
@@ -49,26 +45,25 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //Function to create a certain amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return self.eventsVar.eventNames.count
-        return eventsClass.count
+        return savedEventsClass.count
     }
     
     
     
     //This is the function for what's on the cards
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! SavedEventsCollectionViewCell
         
         
-        //Setting all the labels, title and image are pulled from eventsClass up top
-        cell.imageView?.image = eventsClass[indexPath.row].eventImage
-        cell.titleLabel?.text = eventsClass[indexPath.row].eventName
-        cell.filterLabel.text = eventsClass[indexPath.row].eventFilter
-        cell.addressButtonOutlet.setTitle(eventsClass[indexPath.row].eventAddress, for: UIControlState.normal)
-        cell.dateLabel.text = eventsClass[indexPath.row].eventDate
-        cell.descriptionLabel.text = eventsClass[indexPath.row].eventDesc
-        cell.priceLabel.text = eventsClass[indexPath.row].eventPrice
+        //Setting all the labels, title and image are pulled from eventsClass
+        cell.imageView?.image = savedEventsClass[indexPath.row].eventImage
+        cell.titleLabel?.text = savedEventsClass[indexPath.row].eventName
+        cell.filterLabel.text = savedEventsClass[indexPath.row].eventFilter
+        cell.addressButtonOutlet.setTitle(savedEventsClass[indexPath.row].eventAddress, for: UIControlState.normal)
+        cell.dateLabel.text = savedEventsClass[indexPath.row].eventDate
+        cell.descriptionLabel.text = savedEventsClass[indexPath.row].eventDesc
+        cell.priceLabel.text = savedEventsClass[indexPath.row].eventPrice
         cell.plusLabel.text = "+"
-        cell.indexP = indexPath.row
         
         
         //Setting all the icons
@@ -89,13 +84,13 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-
+        
         return cell
     }
-
     
     
-    //This says if a user selects a cell, it will perform a segue to a new view, which in this case will be our Event Page
+    
+  /*  //This says if a user selects a cell, it will perform a segue to a new view, which in this case will be our Event Page
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: "showEventPage", sender: self)
     }
@@ -114,25 +109,17 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             
             //Actually passing the data from this file to the Event Page
-            vc.titleLabelE = eventsClass[indexPath.row].eventName
-            vc.topImageE = eventsClass[indexPath.row].eventImage
-
-            vc.dateLabelE = eventsClass[indexPath.row].eventDate
-            vc.priceLabelE = eventsClass[indexPath.row].eventPrice
-            vc.addressLabelE = eventsClass[indexPath.row].eventAddress
-            vc.detailsLabelE = eventsClass[indexPath.row].eventDesc
+            vc.titleLabelE = eventsVar.eventsClass[indexPath.row].eventName
+            vc.topImageE = eventsVar.eventsClass[indexPath.row].eventImage
+            
+            vc.dateLabelE = eventsVar.eventsClass[indexPath.row].eventDate
+            vc.priceLabelE = eventsVar.eventsClass[indexPath.row].eventPrice
+            vc.addressLabelE = eventsVar.eventsClass[indexPath.row].eventAddress
+            vc.detailsLabelE = eventsVar.eventsClass[indexPath.row].eventDesc
             
             vc.indexP = indexPath.row
             
         }
-    }
+    }*/
 }
 
-
-
-
-
-/*override func didReceiveMemoryWarning() {
- super.didReceiveMemoryWarning()
- // Dispose of any resources that can be recreated.
- }*/
