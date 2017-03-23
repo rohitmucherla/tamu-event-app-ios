@@ -15,37 +15,50 @@ class CollectionViewCell: UICollectionViewCell {
     //This file holds all the outlets for the elements of the cards on the homepage
     
     
-    
-    @IBOutlet weak var addressButtonOutlet: UIButton!               //This is for the address, it lets us manipulate the name
+    //This is for the address, it lets us manipulate the name
+    @IBOutlet weak var addressButtonOutlet: UIButton!
     @IBOutlet weak var addressIcon: UIImageView!
     @IBOutlet weak var priceIcon: UIImageView!
     @IBOutlet weak var detailIcon: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var shareImage: UIImageView!
-    @IBOutlet weak var saveImage: UIImageView!
     @IBOutlet weak var plusLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var filterLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     
-    var eventsVar = ViewController.events()                         //Variable lets us import our events struct
+    //indexP is the index path we passed from ViewController.swift
+    var indexP: Int = 0
+    
+    
+    //This is for the save button, it isn't finished yet
+    @IBAction func saveAction(_ sender: UIButton) {
+        
+        savedEventsClass.append(SavedEvent(name: eventsClass[indexP].eventName, image: eventsClass[indexP].eventImage, date: eventsClass[indexP].eventDate, price: eventsClass[indexP].eventPrice, address: eventsClass[indexP].eventAddress, desc: eventsClass[indexP].eventDesc, filter: eventsClass[indexP].eventFilter, galleryPics: eventsClass[indexP].eventGalleryPics, addressStreet: eventsClass[indexP].eventAddressStreet, city: eventsClass[indexP].eventCity, state: eventsClass[indexP].eventState))
+        
+        //UserDefaults.standard.set(isBookmarked, forKey: "saveButton")
+        //UserDefaults.standard.synchronize()
+        
+    }
+    
     
     
     //This action opens up eventsVar.directionsURL in Apple Maps
     @IBAction func addressButton(_ sender: UIButton) {
         
-        var directions = eventsVar.addressStreet + " " + eventsVar.city + " " + eventsVar.state
+        var directions = eventsClass[indexP].eventAddressStreet + " " + eventsClass[indexP].eventCity + " " + eventsClass[indexP].eventState
         directions = directions.replacingOccurrences(of: " ", with: "+")
-        eventsVar.directionsURL = eventsVar.directionsURL + directions
+        eventsClass[indexP].eventDirectionsURL = eventsClass[indexP].eventDirectionsURL + directions
         
-        if let url = NSURL(string: eventsVar.directionsURL) {
-            
+        if let url = NSURL(string: eventsClass[indexP].eventDirectionsURL) {
             UIApplication.shared.open(url as URL)
-            
         }
+        
+        eventsClass[indexP].eventDirectionsURL = "http://maps.apple.com/?q="
     }
 }

@@ -15,12 +15,6 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 
 
-//Instantiating these class variables outside of a class lets you use them in every file
-var savedEventsClass = [SavedEvent]()
-let eventsClass = Event.generateEventArray()
-
-
-
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     
     @IBOutlet weak var open: UIBarButtonItem!
@@ -32,7 +26,37 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     //All the variables we need later, stored in a struct
-
+    struct events {
+        let eventNames = ["ACDC Concert","Super Bowl XVII","I ran out of event names","Once again I ran out of event names"]
+        let imageArray = [UIImage(named: "event1"), UIImage(named: "event2-1"), UIImage(named: "event3"), UIImage(named: "event4")]
+        let date = "Saturday, October 31, 2017 | 3:00 PM"
+        let price = "Price: From $150.00"
+        let address = "123 Sesame Street College Station"
+        let desc = "Blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah blah"
+        let plus = "+"
+        var directionsURL = "http://maps.apple.com/?q="
+        let filters = ["food","drinks","academics","etc."]
+        let galleryPics = [UIImage(named: "stock1"),UIImage(named: "stock2"),UIImage(named: "stock3"),UIImage(named: "stock4"),UIImage(named: "stock5"),UIImage(named: "stock6"),UIImage(named: "stock7"),UIImage(named: "stock8")]
+        
+        
+        let addressStreet = "Disney World"
+        let city = ""
+        let state = ""
+        
+    }
+    
+    struct tags {
+        var tag1 = 0
+    }
+    
+    var tagVar = tags()
+    
+    let eventsClass = Event.generateEventArray()
+    
+    
+    //Variable lets us edit the struct
+    //var eventsVar = events()
+    
     
     
     //These add gestures and a button to the side bar
@@ -42,6 +66,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         buttonTo2.target = self.revealViewController()
         buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
+        
     }
     
     
@@ -59,7 +84,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
         
         
-        //Setting all the labels, title and image are pulled from eventsClass up top
+        //Setting all the labels, title and image are pulled from array up top
+        /*  cell.imageView?.image = self.eventsVar.imageArray[indexPath.row]
+         cell.titleLabel?.text = self.eventsVar.eventNames[indexPath.row]
+         cell.filterLabel.text = self.eventsVar.filters[indexPath.row]
+         cell.addressButtonOutlet.setTitle(eventsVar.address, for: UIControlState.normal)
+         cell.dateLabel.text = eventsVar.date
+         cell.descriptionLabel.text = eventsVar.desc
+         cell.priceLabel.text = eventsVar.price
+         cell.plusLabel.text = eventsVar.plus        */
+        
         cell.imageView?.image = eventsClass[indexPath.row].eventImage
         cell.titleLabel?.text = eventsClass[indexPath.row].eventName
         cell.filterLabel.text = eventsClass[indexPath.row].eventFilter
@@ -68,11 +102,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.descriptionLabel.text = eventsClass[indexPath.row].eventDesc
         cell.priceLabel.text = eventsClass[indexPath.row].eventPrice
         cell.plusLabel.text = "+"
-        cell.indexP = indexPath.row
+        
         
         
         //Setting all the icons
         cell.shareImage.image = UIImage(named: "shareButton")
+        cell.saveImage.image = UIImage(named: "bookmark")
         cell.priceIcon.image = UIImage(named: "currency-usd copy")
         cell.addressIcon.image = UIImage(named: "earth")
         cell.detailIcon.image = UIImage(named: "format-list-bulleted")
@@ -89,10 +124,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
         cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-
+        
+        
+        cell.addressButtonOutlet.tag = IndexPath
+        tagVar.tag1 = cell.addressButtonOutlet.tag
+        print(tagVar.tag1)
+        
         return cell
     }
-
+    
     
     
     //This says if a user selects a cell, it will perform a segue to a new view, which in this case will be our Event Page
@@ -116,13 +156,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             //Actually passing the data from this file to the Event Page
             vc.titleLabelE = eventsClass[indexPath.row].eventName
             vc.topImageE = eventsClass[indexPath.row].eventImage
-
+            
             vc.dateLabelE = eventsClass[indexPath.row].eventDate
             vc.priceLabelE = eventsClass[indexPath.row].eventPrice
             vc.addressLabelE = eventsClass[indexPath.row].eventAddress
             vc.detailsLabelE = eventsClass[indexPath.row].eventDesc
-            
-            vc.indexP = indexPath.row
             
         }
     }

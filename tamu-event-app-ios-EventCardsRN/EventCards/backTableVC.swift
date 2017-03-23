@@ -20,6 +20,7 @@ class backTableVC: UITableViewController{
     //Arrays we need to create the cells in the side bar
     var tableArray = ["Fun Stuff", "Boring Stuff", "Food :D", "Academics (zzz)"]
     var imageArray = [UIImage(named: "music"), UIImage(named: "drinks"), UIImage(named: "food"), UIImage(named: "school")]
+    let filters = ["food","drinks","academics","etc."]
     
     
     
@@ -54,8 +55,6 @@ class backTableVC: UITableViewController{
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return "Filters"
     }
-    
-    
     
 
     
