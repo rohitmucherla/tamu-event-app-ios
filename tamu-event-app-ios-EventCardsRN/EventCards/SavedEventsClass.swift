@@ -42,7 +42,7 @@ class SavedEvent: NSObject {
         eventState = state
         
     }
-
+/*
     class func generateSavedEventArray(indexP: Int) -> [SavedEvent]{
         
         savedEventsClass.append(SavedEvent(name: eventsClass[indexP].eventName, image: eventsClass[indexP].eventImage, date: eventsClass[indexP].eventDate, price: eventsClass[indexP].eventPrice, address: eventsClass[indexP].eventAddress, desc: eventsClass[indexP].eventDesc, filter: eventsClass[indexP].eventFilter, galleryPics: eventsClass[indexP].eventGalleryPics, addressStreet: eventsClass[indexP].eventAddressStreet, city: eventsClass[indexP].eventCity, state: eventsClass[indexP].eventState))
@@ -50,4 +50,5 @@ class SavedEvent: NSObject {
         
         return savedEventsClass
     }
+ */
 }

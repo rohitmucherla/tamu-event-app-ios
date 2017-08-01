@@ -5,9 +5,12 @@
 //  Created by Riley Norris on 2/24/17.
 //  Copyright © 2017 Aggie Coding Club. All rights reserved.
 //
-
+import Foundation
+import FirebaseDatabase
+import Firebase
 import UIKit
 import MapKit       //Importing MapKit lets us work with Apple Maps
+//let EventRef = FIRDatabase.database().reference(withPath: "Events")
 
 
 
@@ -17,7 +20,9 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 //Instantiating these class variables outside of a class lets you use them in every file
 var savedEventsClass = [SavedEvent]()
-let eventsClass = Event.generateEventArray()
+let eventsClass = Event.generateEventArrayFir()
+//var eventsClass : [Event] = []
+
 
 
 
@@ -38,10 +43,16 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //These add gestures and a button to the side bar
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         searchBar.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         buttonTo2.target = self.revealViewController()
         buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
+        
+        print ("Array in ViewController")
+        print (eventsClass)
+        print ("This one right here is in the ViewController ^^^^")
     }
     
     
@@ -121,7 +132,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             vc.priceLabelE = eventsClass[indexPath.row].eventPrice
             vc.addressLabelE = eventsClass[indexPath.row].eventAddress
             vc.detailsLabelE = eventsClass[indexPath.row].eventDesc
-            
             vc.indexP = indexPath.row
             
         }

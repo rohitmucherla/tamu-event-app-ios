@@ -10,7 +10,7 @@ import UIKit
 
 class NewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    
+    //
     
     //This file holds all the data for our Event Page
     
