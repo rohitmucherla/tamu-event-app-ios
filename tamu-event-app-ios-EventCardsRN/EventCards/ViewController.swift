@@ -20,8 +20,7 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 //Instantiating these class variables outside of a class lets you use them in every file
 var savedEventsClass = [SavedEvent]()
-let eventsClass = Event.generateEventArrayFir()
-//var eventsClass : [Event] = []
+var eventsClass : [Event] = []
 
 
 
@@ -43,17 +42,23 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //These add gestures and a button to the side bar
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
         searchBar.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         buttonTo2.target = self.revealViewController()
         buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
         
-        print ("Array in ViewController")
-        print (eventsClass)
-        print ("This one right here is in the ViewController ^^^^")
+        //This listens to the database and refreshes the view whenever it changes
+        EventRef.observe(.value, with: { snapshot in
+            eventsClass.removeAll()
+            for item in snapshot.children {
+                let loadedEvent = Event(snapshot: item as! FIRDataSnapshot)
+                eventsClass.append(loadedEvent)
+            }
+            super.viewWillAppear(true)
+            self.collectionView.reloadData()
+        })
     }
+    
     
     
     
