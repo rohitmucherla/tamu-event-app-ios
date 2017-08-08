@@ -21,7 +21,7 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 //Instantiating these class variables outside of a class lets you use them in every file
 var savedEventsClass = [SavedEvent]()
 var eventsClass : [Event] = []
-
+var fireClass : [Event] = []
 
 
 
@@ -32,6 +32,10 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
     @IBOutlet weak var searchBar: UISearchBar!
+    
+    //These are likely temporary filters but whatever
+    //Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
+    var filter: Character = "N"
     
     
     
@@ -50,10 +54,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //This listens to the database and refreshes the view whenever it changes
         EventRef.observe(.value, with: { snapshot in
             eventsClass.removeAll()
+            fireClass.removeAll()
+            
             for item in snapshot.children {
                 let loadedEvent = Event(snapshot: item as! FIRDataSnapshot)
-                eventsClass.append(loadedEvent)
+                fireClass.append(loadedEvent)
             }
+            //This is the filter loop
+            for event in fireClass {
+                for char in event.eventFilter.characters {
+                    if char == self.filter {
+                        eventsClass.append(event)
+                    }
+                }
+            }
+            //This refreshes the view
             super.viewWillAppear(true)
             self.collectionView.reloadData()
         })

@@ -22,6 +22,8 @@ class Event: NSObject {
     var eventAddress = ""
     
     var eventDirectionsURL = "http://maps.apple.com/?q="
+    
+    
     var eventFilter = ""
     var eventGalleryPics = UIImage()
     var eventAddressStreet = ""
@@ -59,11 +61,20 @@ class Event: NSObject {
         eventPrice = snapshotValue["price"] as! String
         eventAddress = snapshotValue["address"] as! String
         eventDesc = snapshotValue["desc"] as! String
-        eventFilter = snapshotValue["filters"] as! String
+        
+        //These are likely temporary filters but whatever
+        //Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
+        eventFilter = snapshotValue["filters"] as! String + "n"
+        eventFilter = eventFilter.uppercased()
+        
+        
         eventAddressStreet = snapshotValue["street"] as! String
         eventCity = snapshotValue["city"] as! String
         eventState = snapshotValue["state"] as! String
-        eventRef = ""
+        eventRef = eventName + eventDate + ".jpg"
+        
+        //let testRef = ImageRef.child(eventRef)
+        
         
         eventImage = #imageLiteral(resourceName: "event1")
         eventGalleryPics = #imageLiteral(resourceName: "stock1")

@@ -8,8 +8,9 @@
 
 import Foundation
 import FirebaseDatabase
-import Firebase
+import FirebaseStorage
 
 let baseURL = "https://eventcards-3a476.firebaseio.com/"
 
 let EventRef = FIRDatabase.database().reference(withPath: "Events")
+let ImageRef = FIRStorage.storage().reference(withPath: "images")
