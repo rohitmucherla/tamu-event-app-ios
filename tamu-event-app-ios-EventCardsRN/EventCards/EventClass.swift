@@ -81,6 +81,18 @@ class Event: NSObject {
         eventDirectionsURL = "http://maps.apple.com/?q="
     }
     
+    class func filterEventArray(eventClass: [Event], filter: Character) -> [Event]{
+        //This is the filter loop
+        for event in eventClass {
+            for char in event.eventFilter.characters {
+                if char == filter {
+                    eventsClass.append(event)
+                }
+            }
+        }
+        return eventClass
+    }
+    
     //This function generates some temporary vales we can use
     /*class func generateEventArrayLocal() -> [Event]{
         var eventClass = [Event]()

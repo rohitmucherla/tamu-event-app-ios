@@ -60,20 +60,31 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 let loadedEvent = Event(snapshot: item as! FIRDataSnapshot)
                 fireClass.append(loadedEvent)
             }
-            //This is the filter loop
-            for event in fireClass {
-                for char in event.eventFilter.characters {
-                    if char == self.filter {
-                        eventsClass.append(event)
-                    }
-                }
-            }
-            //This refreshes the view
-            super.viewWillAppear(true)
-            self.collectionView.reloadData()
+            
+            eventsClass = self.filterEventArray(fireClass: fireClass)
+            self.refreshView()
         })
     }
     
+    
+    //This function filters the array of events
+    func filterEventArray(fireClass: [Event]) -> [Event]{
+        //This is the filter loop
+        var eventsClass : [Event] = []
+        for event in fireClass {
+            for char in event.eventFilter.characters {
+                if char == filter {eventsClass.append(event)}
+            }
+        }
+        return eventsClass
+    }
+    
+    
+    //This function refreshes the view
+    func refreshView(){
+        super.viewWillAppear(true)
+        self.collectionView.reloadData()
+    }
     
     
     
