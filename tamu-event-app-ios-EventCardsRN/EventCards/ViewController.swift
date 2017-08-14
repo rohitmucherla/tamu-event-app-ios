@@ -20,8 +20,8 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 //Instantiating these class variables outside of a class lets you use them in every file
 var savedEventsClass = [SavedEvent]()
-var eventsClass : [Event] = []
-var fireClass : [Event] = []
+var eventsClass : [Event] = []  //This is the array that is seen on the main page
+var fireClass : [Event] = []    //This is the array that is loaded from Firebase
 
 
 
@@ -36,7 +36,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //These are likely temporary filters but whatever
     //Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
     var filter: Character = "N"
-    
+    var fireRun = 0
     
     
     //All the variables we need later, stored in a struct
@@ -53,6 +53,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         //This listens to the database and refreshes the view whenever it changes
         EventRef.observe(.value, with: { snapshot in
+            
             eventsClass.removeAll()
             fireClass.removeAll()
             
@@ -60,23 +61,22 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
                 let loadedEvent = Event(snapshot: item as! FIRDataSnapshot)
                 fireClass.append(loadedEvent)
             }
-            
-            eventsClass = self.filterEventArray(fireClass: fireClass)
+            eventsClass = self.filterEventArray(rawEvents: fireClass)
             self.refreshView()
         })
     }
     
     
     //This function filters the array of events
-    func filterEventArray(fireClass: [Event]) -> [Event]{
+    func filterEventArray(rawEvents: [Event]) -> [Event]{
         //This is the filter loop
-        var eventsClass : [Event] = []
-        for event in fireClass {
+        var filteredEvents : [Event] = []
+        for event in rawEvents {
             for char in event.eventFilter.characters {
-                if char == filter {eventsClass.append(event)}
+                if char == filter {filteredEvents.append(event)}
             }
         }
-        return eventsClass
+        return filteredEvents
     }
     
     

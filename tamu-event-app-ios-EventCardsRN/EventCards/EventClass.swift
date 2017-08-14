@@ -9,7 +9,7 @@
 import Foundation
 import FirebaseDatabase
 import Firebase
-
+import SDWebImage
 //This file stores our events class
 
 
@@ -73,25 +73,18 @@ class Event: NSObject {
         eventState = snapshotValue["state"] as! String
         eventRef = eventName + eventDate + ".jpg"
         
-        //let testRef = ImageRef.child(eventRef)
-        
+        //let testRef = ImageRef.child("Illuminati.jpg")
+        //let url = URL(string:"https://firebasestorage.googleapis.com/v0/b/eventcards-3a476.appspot.com/o/Illuminati.jpg?alt=media&token=92d124fb-b9ad-4720-988d-1ca668f52c55")
         
         eventImage = #imageLiteral(resourceName: "event1")
+        //eventImage = UIImage(named: "garbage.jpg")!
+        //UIImageView.sd_setImage(with: URL(string: "https://firebasestorage.googleapis.com/v0/b/eventcards-3a476.appspot.com/o/Illuminati.jpg?alt=media&token=92d124fb-b9ad-4720-988d-1ca668f52c55"), placeholderImage: eventImage)
+        
+        //[UIImageView.sd_setImageWithStorageReference:testRef, eventImage]
         eventGalleryPics = #imageLiteral(resourceName: "stock1")
         eventDirectionsURL = "http://maps.apple.com/?q="
     }
     
-    class func filterEventArray(eventClass: [Event], filter: Character) -> [Event]{
-        //This is the filter loop
-        for event in eventClass {
-            for char in event.eventFilter.characters {
-                if char == filter {
-                    eventsClass.append(event)
-                }
-            }
-        }
-        return eventClass
-    }
     
     //This function generates some temporary vales we can use
     /*class func generateEventArrayLocal() -> [Event]{
