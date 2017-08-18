@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import FirebaseDatabase
 import Firebase
-import SDWebImage
+//import SDWebImage
 //This file stores our events class
 
 
@@ -32,10 +31,10 @@ class Event: NSObject {
     
     var eventDesc = ""
     var eventKey = ""
-    var eventRef = ""
+    var eventRef = ImageRef
     
     
-    init(name: String,image: UIImage,date: String,price: String,address: String,desc: String,filter: String,galleryPics: UIImage,addressStreet: String,city: String,state: String, ref: String, key: String) {
+    init(name: String,image: UIImage,date: String,price: String,address: String,desc: String,filter: String,galleryPics: UIImage,addressStreet: String,city: String,state: String, ref: FIRStorageReference, key: String) {
         
         eventName = name
         eventImage = image
@@ -71,16 +70,12 @@ class Event: NSObject {
         eventAddressStreet = snapshotValue["street"] as! String
         eventCity = snapshotValue["city"] as! String
         eventState = snapshotValue["state"] as! String
-        eventRef = eventName + eventDate + ".jpg"
+        eventRef = ImageRef.child(eventName + eventDate + ".jpg")
         
-        //let testRef = ImageRef.child("Illuminati.jpg")
-        //let url = URL(string:"https://firebasestorage.googleapis.com/v0/b/eventcards-3a476.appspot.com/o/Illuminati.jpg?alt=media&token=92d124fb-b9ad-4720-988d-1ca668f52c55")
         
         eventImage = #imageLiteral(resourceName: "event1")
-        //eventImage = UIImage(named: "garbage.jpg")!
-        //UIImageView.sd_setImage(with: URL(string: "https://firebasestorage.googleapis.com/v0/b/eventcards-3a476.appspot.com/o/Illuminati.jpg?alt=media&token=92d124fb-b9ad-4720-988d-1ca668f52c55"), placeholderImage: eventImage)
         
-        //[UIImageView.sd_setImageWithStorageReference:testRef, eventImage]
+        
         eventGalleryPics = #imageLiteral(resourceName: "stock1")
         eventDirectionsURL = "http://maps.apple.com/?q="
     }

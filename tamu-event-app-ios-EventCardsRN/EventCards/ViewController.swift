@@ -6,7 +6,6 @@
 //  Copyright © 2017 Aggie Coding Club. All rights reserved.
 //
 import Foundation
-import FirebaseDatabase
 import Firebase
 import UIKit
 import MapKit       //Importing MapKit lets us work with Apple Maps
@@ -102,7 +101,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
         //Setting all the labels, title and image are pulled from eventsClass up top
-        cell.imageView?.image = eventsClass[indexPath.row].eventImage
+        
+        //This loads image from Firebase and sets it as eventImage
+        cell.imageView.sd_setImage(with: eventsClass[indexPath.row].eventRef , placeholderImage: cell.imageView?.image)
+        eventsClass[indexPath.row].eventImage = cell.imageView.image!
+        
         cell.titleLabel?.text = eventsClass[indexPath.row].eventName
         cell.filterLabel.text = eventsClass[indexPath.row].eventFilter
         cell.addressButtonOutlet.setTitle(eventsClass[indexPath.row].eventAddress, for: UIControlState.normal)
