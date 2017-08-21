@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ny4-55-34C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ny4-55-34C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -38,7 +38,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="8Wt-G8-b3D" customClass="CollectionViewCell" customModule="EventCards" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="15" width="350" height="450"/>
+                                        <rect key="frame" x="12.5" y="15" width="350" height="450"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="450"/>
@@ -167,6 +167,16 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="Rum-Qh-Ocq">
                         <barButtonItem key="leftBarButtonItem" title="| | |" id="XHx-Gp-5vV"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="G6M-CC-WNf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="isp-wX-oWy">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <connections>
+                                <segue destination="Qpn-Jx-S42" kind="presentation" id="vNL-49-Bh1"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="buttonTo2" destination="XHx-Gp-5vV" id="YAo-Xg-4AR"/>
@@ -174,7 +184,7 @@
                         <outlet property="searchBar" destination="uDd-rK-dhR" id="BxO-0s-qY8"/>
                         <outlet property="searchDisplayController" destination="qQ9-dQ-3U9" id="ddX-Da-h53"/>
                         <outlet property="viewControl" destination="dOJ-Dz-7y6" id="eI1-3f-W7u"/>
-                        <segue destination="3Uo-rB-Suc" kind="show" identifier="showEventPage" id="t6O-Iz-tt2"/>
+                        <segue destination="3Uo-rB-Suc" kind="show" identifier="showEventPage" id="nfa-Sp-BLN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -389,7 +399,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gE-45-3zE" id="Qvl-Dl-eJh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -407,6 +417,39 @@
             </objects>
             <point key="canvasLocation" x="1996" y="-602.24887556221893"/>
         </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="vie-NN-oHp">
+            <objects>
+                <viewController id="Qpn-Jx-S42" customClass="AuthViewController" customModule="EventCards" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JVV-3j-FYo"/>
+                        <viewControllerLayoutGuide type="bottom" id="eRr-nw-AZO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h4z-IN-Sun">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbU-RV-Dgq" customClass="GIDSignInButton">
+                                <rect key="frame" x="67" y="198" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign-In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ny-bI-mU5">
+                                <rect key="frame" x="138" y="139" width="98" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="myo-2v-OO3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17r-yy-Eul" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2935" y="-602"/>
+        </scene>
         <!--Home-->
         <scene sceneID="6zj-mw-kbg">
             <objects>
@@ -414,7 +457,7 @@
                     <tabBarItem key="tabBarItem" title="Home" image="homeIcon " id="T3j-lO-2gp"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Bo6-9c-HXO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="pf8-rW-WQy">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="pf8-rW-WQy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -432,7 +475,7 @@
             <objects>
                 <navigationController id="Ljk-wq-kaT" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Chat" image="chatBubbles " id="d79-PP-7m3"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cRp-et-B30">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="cRp-et-B30">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -446,7 +489,7 @@
             <objects>
                 <navigationController id="VKX-ZO-hW9" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="My Events" image="bookmarkSelected " id="wpP-UH-Xm7"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="9K9-kD-Lbt">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="9K9-kD-Lbt">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -463,7 +506,7 @@
             <objects>
                 <navigationController id="wVe-xD-aYN" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Map" image="locationIcon " id="tq2-cT-nQ2"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="kuH-9j-qPc">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="kuH-9j-qPc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -552,7 +595,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="GQN-zz-iDy" customClass="SavedEventsCollectionViewCell" customModule="EventCards" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="15" width="350" height="450"/>
+                                        <rect key="frame" x="12.5" y="15" width="350" height="450"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="450"/>

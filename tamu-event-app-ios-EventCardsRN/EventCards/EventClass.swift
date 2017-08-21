@@ -34,7 +34,7 @@ class Event: NSObject {
     var eventRef = ImageRef
     
     
-    init(name: String,image: UIImage,date: String,price: String,address: String,desc: String,filter: String,galleryPics: UIImage,addressStreet: String,city: String,state: String, ref: FIRStorageReference, key: String) {
+    init(name: String,image: UIImage,date: String,price: String,address: String,desc: String,filter: String,galleryPics: UIImage,addressStreet: String,city: String,state: String, ref: StorageReference, key: String) {
         
         eventName = name
         eventImage = image
@@ -52,7 +52,7 @@ class Event: NSObject {
         eventRef = ref
     }
     
-    init(snapshot: FIRDataSnapshot) {
+    init(snapshot: DataSnapshot) {
         eventKey = snapshot.key
         let snapshotValue = snapshot.value as! [String: AnyObject]
         eventName = snapshotValue["name"] as! String
@@ -70,9 +70,9 @@ class Event: NSObject {
         eventAddressStreet = snapshotValue["street"] as! String
         eventCity = snapshotValue["city"] as! String
         eventState = snapshotValue["state"] as! String
+        
+        
         eventRef = ImageRef.child(eventName + eventDate + ".jpg")
-        
-        
         eventImage = #imageLiteral(resourceName: "event1")
         
         

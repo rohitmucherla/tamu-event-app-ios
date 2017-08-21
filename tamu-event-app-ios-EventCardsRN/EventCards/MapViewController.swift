@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loadAddresses()
-        print (self.address.count)
+        
         
         //This listens to the database and refreshes the map whenever it changes
         EventRef.observe(.value, with: { snapshot in

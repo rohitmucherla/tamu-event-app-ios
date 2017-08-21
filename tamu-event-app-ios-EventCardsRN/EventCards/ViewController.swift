@@ -26,6 +26,8 @@ var fireClass : [Event] = []    //This is the array that is loaded from Firebase
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     
+    
+    
     @IBOutlet weak var open: UIBarButtonItem!
     @IBOutlet weak var buttonTo2: UIBarButtonItem!          //This is the outlet to the button for the side bar
     @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
@@ -57,7 +59,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             fireClass.removeAll()
             
             for item in snapshot.children {
-                let loadedEvent = Event(snapshot: item as! FIRDataSnapshot)
+                let loadedEvent = Event(snapshot: item as! DataSnapshot)
                 fireClass.append(loadedEvent)
             }
             eventsClass = self.filterEventArray(rawEvents: fireClass)
