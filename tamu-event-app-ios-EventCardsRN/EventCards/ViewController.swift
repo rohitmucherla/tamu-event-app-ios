@@ -30,6 +30,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var open: UIBarButtonItem!
     @IBOutlet weak var buttonTo2: UIBarButtonItem!          //This is the outlet to the button for the side bar
+    @IBOutlet weak var authButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
     @IBOutlet weak var searchBar: UISearchBar!
@@ -65,8 +66,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             eventsClass = self.filterEventArray(rawEvents: fireClass)
             self.refreshView()
         })
+        
     }
     
+    @IBAction func authDidPress(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "showAuthPage", sender: self)
+    }
     
     //This function filters the array of events
     func filterEventArray(rawEvents: [Event]) -> [Event]{
@@ -105,8 +110,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         //Setting all the labels, title and image are pulled from eventsClass up top
         
         //This loads image from Firebase and sets it as eventImage
-        cell.imageView.sd_setImage(with: eventsClass[indexPath.row].eventRef , placeholderImage: cell.imageView?.image)
-        eventsClass[indexPath.row].eventImage = cell.imageView.image!
+        cell.imageView.sd_setImage(with: eventsClass[indexPath.row].eventRef , placeholderImage: cell.imageView?.image) { (image, error, cache, url) in
+            if cell.imageView.image != nil {
+                eventsClass[indexPath.row].eventImage = cell.imageView.image!
+            }
+        }
+        
         
         cell.titleLabel?.text = eventsClass[indexPath.row].eventName
         cell.filterLabel.text = eventsClass[indexPath.row].eventFilter
