@@ -10,7 +10,7 @@ import UIKit
 
 class NewViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    
+    //
     
     //This file holds all the data for our Event Page
     
@@ -46,7 +46,8 @@ class NewViewController: UIViewController, UICollectionViewDataSource, UICollect
     //This action opens up eventsVar.directionsURL in Apple Maps
     @IBAction func addressButtonAction(_ sender: Any) {
         
-        var directions = eventsClass[indexP].eventAddressStreet + " " + eventsClass[indexP].eventCity + " " + eventsClass[indexP].eventState
+        //var directions = eventsClass[indexP].eventAddressStreet + " " + eventsClass[indexP].eventCity + " " + eventsClass[indexP].eventState
+        var directions = eventsClass[indexP].eventAddress
         directions = directions.replacingOccurrences(of: " ", with: "+")
         eventsClass[indexP].eventDirectionsURL = eventsClass[indexP].eventDirectionsURL + directions
         

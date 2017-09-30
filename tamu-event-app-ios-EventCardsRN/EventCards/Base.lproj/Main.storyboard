@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ny4-55-34C">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ny4-55-34C">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +27,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="jc4-Hw-wBM">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.989013671875" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="7NQ-5I-sYu">
@@ -38,7 +38,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="8Wt-G8-b3D" customClass="CollectionViewCell" customModule="EventCards" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="15" width="350" height="450"/>
+                                        <rect key="frame" x="12.5" y="15" width="350" height="450"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="450"/>
@@ -167,14 +167,26 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Home" id="Rum-Qh-Ocq">
                         <barButtonItem key="leftBarButtonItem" title="| | |" id="XHx-Gp-5vV"/>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="G6M-CC-WNf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="isp-wX-oWy">
+                                <rect key="frame" x="276" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <connections>
+                                <action selector="authDidPress:" destination="BYZ-38-t0r" id="1mW-gP-okI"/>
+                                <segue destination="Qpn-Jx-S42" kind="presentation" identifier="showAuthPage" id="Eta-hX-uvh"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="authButton" destination="G6M-CC-WNf" id="OhN-sG-37Q"/>
                         <outlet property="buttonTo2" destination="XHx-Gp-5vV" id="YAo-Xg-4AR"/>
                         <outlet property="collectionView" destination="jc4-Hw-wBM" id="dFr-34-BAZ"/>
                         <outlet property="searchBar" destination="uDd-rK-dhR" id="BxO-0s-qY8"/>
                         <outlet property="searchDisplayController" destination="qQ9-dQ-3U9" id="ddX-Da-h53"/>
                         <outlet property="viewControl" destination="dOJ-Dz-7y6" id="eI1-3f-W7u"/>
-                        <segue destination="3Uo-rB-Suc" kind="show" identifier="showEventPage" id="t6O-Iz-tt2"/>
+                        <segue destination="3Uo-rB-Suc" kind="show" identifier="showEventPage" id="nfa-Sp-BLN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -187,7 +199,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2935.1999999999998" y="227.13643178410797"/>
+            <point key="canvasLocation" x="2933.5999999999999" y="182.15892053973016"/>
         </scene>
         <!--New View Controller-->
         <scene sceneID="u1Y-JP-xnA">
@@ -260,40 +272,6 @@
                                             <action selector="addressButtonAction:" destination="3Uo-rB-Suc" eventType="touchUpInside" id="I0H-wz-Jkd"/>
                                         </connections>
                                     </button>
-                                    <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ZxM-5S-B3H">
-                                        <rect key="frame" x="20" y="420" width="330" height="169"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JXN-1Z-RnP">
-                                            <size key="itemSize" width="75" height="75"/>
-                                            <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                                            <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                            <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                        </collectionViewFlowLayout>
-                                        <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EPCell" id="3JW-lj-zfk" customClass="EventPageCVCell" customModule="EventCards" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                                    <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                                    <autoresizingMask key="autoresizingMask"/>
-                                                    <subviews>
-                                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ltB-TY-fh7">
-                                                            <rect key="frame" x="0.0" y="0.0" width="75" height="75"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                        </imageView>
-                                                    </subviews>
-                                                </view>
-                                                <connections>
-                                                    <outlet property="EPImageView" destination="ltB-TY-fh7" id="5G9-Dw-EHa"/>
-                                                </connections>
-                                            </collectionViewCell>
-                                        </cells>
-                                        <connections>
-                                            <outlet property="dataSource" destination="3Uo-rB-Suc" id="KSP-Zs-yRW"/>
-                                            <outlet property="delegate" destination="3Uo-rB-Suc" id="L4u-Zg-WT9"/>
-                                        </connections>
-                                    </collectionView>
                                 </subviews>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="size" keyPath="contentSize">
@@ -309,7 +287,6 @@
                     <connections>
                         <outlet property="addressButtonLabel" destination="8Wa-t1-AkQ" id="3jN-ks-eVE"/>
                         <outlet property="addressImageEvent" destination="nd6-IJ-jAK" id="rWm-xD-nRh"/>
-                        <outlet property="collectionViewGallery" destination="ZxM-5S-B3H" id="52o-2i-5KU"/>
                         <outlet property="dateLabelEvent" destination="I0W-yT-5xg" id="At8-g0-mpz"/>
                         <outlet property="detailsImageEvent" destination="ZPw-vG-2UB" id="PJH-yx-KDK"/>
                         <outlet property="detailsLabelEvent" destination="esc-HO-8jk" id="OyD-sP-Adl"/>
@@ -389,7 +366,7 @@
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2gE-45-3zE" id="Qvl-Dl-eJh">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -406,6 +383,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hhk-4x-gny" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1996" y="-602.24887556221893"/>
+        </scene>
+        <!--Auth View Controller-->
+        <scene sceneID="vie-NN-oHp">
+            <objects>
+                <viewController id="Qpn-Jx-S42" customClass="AuthViewController" customModule="EventCards" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JVV-3j-FYo"/>
+                        <viewControllerLayoutGuide type="bottom" id="eRr-nw-AZO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="h4z-IN-Sun">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nbU-RV-Dgq" customClass="GIDSignInButton">
+                                <rect key="frame" x="67" y="198" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Sign-In" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ny-bI-mU5">
+                                <rect key="frame" x="138" y="139" width="98" height="51"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="myo-2v-OO3"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="17r-yy-Eul" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2935" y="-602"/>
         </scene>
         <!--Home-->
         <scene sceneID="6zj-mw-kbg">
@@ -541,7 +551,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </scrollView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="dDn-Rk-Kra">
-                                <rect key="frame" x="0.0" y="108" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="108" width="375" height="510"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.9890136719" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="hod-D8-Uvw">
@@ -552,7 +562,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell2" id="GQN-zz-iDy" customClass="SavedEventsCollectionViewCell" customModule="EventCards" customModuleProvider="target">
-                                        <rect key="frame" x="13" y="15" width="350" height="450"/>
+                                        <rect key="frame" x="12.5" y="15" width="350" height="450"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="350" height="450"/>
@@ -692,7 +702,7 @@
                     </connections>
                 </searchDisplayController>
             </objects>
-            <point key="canvasLocation" x="2935" y="1681"/>
+            <point key="canvasLocation" x="2933.5999999999999" y="1680.8095952023989"/>
         </scene>
     </scenes>
     <resources>

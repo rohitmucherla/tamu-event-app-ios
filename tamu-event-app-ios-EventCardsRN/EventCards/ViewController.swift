@@ -5,9 +5,11 @@
 //  Created by Riley Norris on 2/24/17.
 //  Copyright © 2017 Aggie Coding Club. All rights reserved.
 //
-
+import Foundation
+import Firebase
 import UIKit
 import MapKit       //Importing MapKit lets us work with Apple Maps
+//let EventRef = FIRDatabase.database().reference(withPath: "Events")
 
 
 
@@ -17,18 +19,26 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 //Instantiating these class variables outside of a class lets you use them in every file
 var savedEventsClass = [SavedEvent]()
-let eventsClass = Event.generateEventArray()
+var eventsClass : [Event] = []  //This is the array that is seen on the main page
+var fireClass : [Event] = []    //This is the array that is loaded from Firebase
 
 
 
 class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
     
+    
+    
     @IBOutlet weak var open: UIBarButtonItem!
     @IBOutlet weak var buttonTo2: UIBarButtonItem!          //This is the outlet to the button for the side bar
+    @IBOutlet weak var authButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
     @IBOutlet weak var searchBar: UISearchBar!
     
+    //These are likely temporary filters but whatever
+    //Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
+    var filter: Character = "N"
+    var fireRun = 0
     
     
     //All the variables we need later, stored in a struct
@@ -42,6 +52,44 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         buttonTo2.target = self.revealViewController()
         buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
+        
+        //This listens to the database and refreshes the view whenever it changes
+        EventRef.observe(.value, with: { snapshot in
+            
+            eventsClass.removeAll()
+            fireClass.removeAll()
+            
+            for item in snapshot.children {
+                let loadedEvent = Event(snapshot: item as! DataSnapshot)
+                fireClass.append(loadedEvent)
+            }
+            eventsClass = self.filterEventArray(rawEvents: fireClass)
+            self.refreshView()
+        })
+        
+    }
+    
+    @IBAction func authDidPress(_ sender: UIBarButtonItem) {
+        self.performSegue(withIdentifier: "showAuthPage", sender: self)
+    }
+    
+    //This function filters the array of events
+    func filterEventArray(rawEvents: [Event]) -> [Event]{
+        //This is the filter loop
+        var filteredEvents : [Event] = []
+        for event in rawEvents {
+            for char in event.eventFilter.characters {
+                if char == filter {filteredEvents.append(event)}
+            }
+        }
+        return filteredEvents
+    }
+    
+    
+    //This function refreshes the view
+    func refreshView(){
+        super.viewWillAppear(true)
+        self.collectionView.reloadData()
     }
     
     
@@ -60,7 +108,15 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         
         //Setting all the labels, title and image are pulled from eventsClass up top
-        cell.imageView?.image = eventsClass[indexPath.row].eventImage
+        
+        //This loads image from Firebase and sets it as eventImage
+        cell.imageView.sd_setImage(with: eventsClass[indexPath.row].eventRef , placeholderImage: cell.imageView?.image) { (image, error, cache, url) in
+            if cell.imageView.image != nil {
+                eventsClass[indexPath.row].eventImage = cell.imageView.image!
+            }
+        }
+        
+        
         cell.titleLabel?.text = eventsClass[indexPath.row].eventName
         cell.filterLabel.text = eventsClass[indexPath.row].eventFilter
         cell.addressButtonOutlet.setTitle(eventsClass[indexPath.row].eventAddress, for: UIControlState.normal)
@@ -121,7 +177,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             vc.priceLabelE = eventsClass[indexPath.row].eventPrice
             vc.addressLabelE = eventsClass[indexPath.row].eventAddress
             vc.detailsLabelE = eventsClass[indexPath.row].eventDesc
-            
             vc.indexP = indexPath.row
             
         }

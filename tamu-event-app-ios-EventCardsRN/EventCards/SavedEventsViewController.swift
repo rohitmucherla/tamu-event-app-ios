@@ -11,6 +11,7 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 
 
+
 //This file generates the saved events
 
 
@@ -27,6 +28,8 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     //These add gestures and a button to the side bar
     override func viewDidLoad() {
+        
+        
         super.viewDidLoad()
         searchBar.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
