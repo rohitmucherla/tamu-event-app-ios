@@ -34,7 +34,6 @@ class SavedEventsCollectionViewCell: UICollectionViewCell {
     var indexP = 0
     
     @IBAction func saveButtonAction(_ sender: Any) {
-        print(indexP)
         if eventsClass[savedEventIndexes[indexP]].eventIsSaved {
             eventsClass[savedEventIndexes[indexP]].eventIsSaved = false;
             savedEventIndexes.remove(at: indexP)
