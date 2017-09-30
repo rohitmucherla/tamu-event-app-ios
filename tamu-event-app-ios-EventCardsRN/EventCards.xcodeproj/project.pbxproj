@@ -22,13 +22,12 @@
 		9028912C1E613EC000454BA2 /* EventCardsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028912B1E613EC000454BA2 /* EventCardsUITests.swift */; };
 		9028913A1E6140B900454BA2 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902891391E6140B900454BA2 /* CollectionViewCell.swift */; };
 		9028913C1E6140E100454BA2 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028913B1E6140E100454BA2 /* NewViewController.swift */; };
-		9036D1BF1E675151006E9A63 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9036D1BE1E675151006E9A63 /* SWRevealViewController.m */; };
 		9036D1C11E67676F006E9A63 /* backTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9036D1C01E67676F006E9A63 /* backTableVC.swift */; };
 		9036D1C41E676F67006E9A63 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9036D1C21E676F67006E9A63 /* SideBarTableViewCell.swift */; };
 		9036D1C51E676F67006E9A63 /* SideBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9036D1C31E676F67006E9A63 /* SideBarTableViewCell.xib */; };
-		907F48DE1E77678D000086A9 /* SavedEventsClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907F48DD1E77678D000086A9 /* SavedEventsClass.swift */; };
 		907F48E01E777886000086A9 /* SavedEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907F48DF1E777886000086A9 /* SavedEventsViewController.swift */; };
 		907F48E21E777F93000086A9 /* SavedEventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907F48E11E777F93000086A9 /* SavedEventsCollectionViewCell.swift */; };
+		908A540A1F801CAB007F4B98 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909BF3A81F801B4F0085D320 /* SWRevealViewController.m */; };
 		90A1A9B51E652D8200527521 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 90A1A9B31E652D8200527521 /* Main.storyboard */; };
 		90A7E3751E6E583200F75701 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90A7E3741E6E583200F75701 /* MapViewController.swift */; };
 		90EE073A1E70B785007E7B6D /* EventClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90EE07391E70B785007E7B6D /* EventClass.swift */; };
@@ -81,14 +80,13 @@
 		902891391E6140B900454BA2 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CollectionViewCell.swift; path = ../CollectionViewCell.swift; sourceTree = "<group>"; };
 		9028913B1E6140E100454BA2 /* NewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewViewController.swift; path = ../NewViewController.swift; sourceTree = "<group>"; };
 		9036D1BC1E675150006E9A63 /* EventCards-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventCards-Bridging-Header.h"; sourceTree = "<group>"; };
-		9036D1BD1E675151006E9A63 /* SWRevealViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
-		9036D1BE1E675151006E9A63 /* SWRevealViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		9036D1C01E67676F006E9A63 /* backTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backTableVC.swift; sourceTree = "<group>"; };
 		9036D1C21E676F67006E9A63 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
 		9036D1C31E676F67006E9A63 /* SideBarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTableViewCell.xib; sourceTree = "<group>"; };
-		907F48DD1E77678D000086A9 /* SavedEventsClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedEventsClass.swift; sourceTree = "<group>"; };
 		907F48DF1E777886000086A9 /* SavedEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedEventsViewController.swift; sourceTree = "<group>"; };
 		907F48E11E777F93000086A9 /* SavedEventsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedEventsCollectionViewCell.swift; sourceTree = "<group>"; };
+		909BF3A71F801B4F0085D320 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
+		909BF3A81F801B4F0085D320 /* SWRevealViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SWRevealViewController.m; sourceTree = "<group>"; };
 		90A1A9B41E652D8200527521 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		90A7E3741E6E583200F75701 /* MapViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		90EE07391E70B785007E7B6D /* EventClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventClass.swift; sourceTree = "<group>"; };
@@ -128,15 +126,15 @@
 		66EC04511F218B8C003EDFD7 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				9036D1BD1E675151006E9A63 /* SWRevealViewController.h */,
-				9036D1BE1E675151006E9A63 /* SWRevealViewController.m */,
+				9028910D1E613EC000454BA2 /* ViewController.swift */,
 				9028913B1E6140E100454BA2 /* NewViewController.swift */,
 				907F48DF1E777886000086A9 /* SavedEventsViewController.swift */,
 				90A7E3741E6E583200F75701 /* MapViewController.swift */,
 				9003C20E1E6BCF73003E484F /* imageViewController.swift */,
-				9028910D1E613EC000454BA2 /* ViewController.swift */,
 				9036D1C01E67676F006E9A63 /* backTableVC.swift */,
 				66E448961F49E39C005A17E9 /* AuthViewController.swift */,
+				909BF3A71F801B4F0085D320 /* SWRevealViewController.h */,
+				909BF3A81F801B4F0085D320 /* SWRevealViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -167,7 +165,6 @@
 			children = (
 				6607138B1F0894350025F1B9 /* DataStuff.swift */,
 				90EE07391E70B785007E7B6D /* EventClass.swift */,
-				907F48DD1E77678D000086A9 /* SavedEventsClass.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -222,11 +219,11 @@
 		9028910A1E613EC000454BA2 /* EventCards */ = {
 			isa = PBXGroup;
 			children = (
-				66EC04571F218E97003EDFD7 /* Support Stuff */,
 				66EC04561F218E77003EDFD7 /* Classes */,
 				66EC04511F218B8C003EDFD7 /* Controllers */,
 				66EC04531F218D58003EDFD7 /* View Cells */,
 				66EC04521F218C46003EDFD7 /* Layouts */,
+				66EC04571F218E97003EDFD7 /* Support Stuff */,
 			);
 			path = EventCards;
 			sourceTree = "<group>";
@@ -331,7 +328,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0820;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Aggie Coding Club";
 				TargetAttributes = {
 					902891071E613EC000454BA2 = {
@@ -574,7 +571,6 @@
 				90EE073A1E70B785007E7B6D /* EventClass.swift in Sources */,
 				9003C20F1E6BCF73003E484F /* imageViewController.swift in Sources */,
 				9003C20D1E6BB4B9003E484F /* EventPageCVCell.swift in Sources */,
-				907F48DE1E77678D000086A9 /* SavedEventsClass.swift in Sources */,
 				66E448971F49E39C005A17E9 /* AuthViewController.swift in Sources */,
 				907F48E01E777886000086A9 /* SavedEventsViewController.swift in Sources */,
 				9036D1C11E67676F006E9A63 /* backTableVC.swift in Sources */,
@@ -582,8 +578,8 @@
 				9028910E1E613EC000454BA2 /* ViewController.swift in Sources */,
 				9028910C1E613EC000454BA2 /* AppDelegate.swift in Sources */,
 				6607138C1F0894350025F1B9 /* DataStuff.swift in Sources */,
+				908A540A1F801CAB007F4B98 /* SWRevealViewController.m in Sources */,
 				907F48E21E777F93000086A9 /* SavedEventsCollectionViewCell.swift in Sources */,
-				9036D1BF1E675151006E9A63 /* SWRevealViewController.m in Sources */,
 				9028913A1E6140B900454BA2 /* CollectionViewCell.swift in Sources */,
 				9036D1C41E676F67006E9A63 /* SideBarTableViewCell.swift in Sources */,
 				9028913C1E6140E100454BA2 /* NewViewController.swift in Sources */,
@@ -650,7 +646,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -658,7 +656,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -699,7 +701,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -707,7 +711,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

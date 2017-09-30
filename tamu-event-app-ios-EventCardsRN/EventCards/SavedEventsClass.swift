@@ -25,8 +25,9 @@ class SavedEvent: NSObject {
     var eventAddressStreet = ""
     var eventCity = ""
     var eventState = ""
+    var eventIndex = 0
     
-    init(name: String,image: UIImage,date: String,price: String,address: String,desc: String,filter: String,galleryPics: UIImage,addressStreet: String,city: String,state: String) {
+    init(name: String,image: UIImage,date: String,price: String,address: String,desc: String,filter: String,galleryPics: UIImage,addressStreet: String,city: String,state: String,index: Int) {
         
         eventName = name
         eventImage = image
@@ -40,6 +41,7 @@ class SavedEvent: NSObject {
         eventAddressStreet = addressStreet
         eventCity = city
         eventState = state
+        eventIndex = index
         
     }
 /*

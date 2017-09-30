@@ -19,15 +19,13 @@ class Event: NSObject {
     var eventDate = ""
     var eventPrice = ""
     var eventAddress = ""
-    
     var eventDirectionsURL = "http://maps.apple.com/?q="
-    
-    
     var eventFilter = ""
     var eventGalleryPics = UIImage()
     var eventAddressStreet = ""
     var eventCity = ""
     var eventState = ""
+    var eventIsSaved = false
     
     var eventDesc = ""
     var eventKey = ""
@@ -79,6 +77,19 @@ class Event: NSObject {
         eventGalleryPics = #imageLiteral(resourceName: "stock1")
         eventDirectionsURL = "http://maps.apple.com/?q="
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     //This function generates some temporary vales we can use
