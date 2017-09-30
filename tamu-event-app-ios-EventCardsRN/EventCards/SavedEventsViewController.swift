@@ -28,8 +28,6 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     //These add gestures and a button to the side bar
     override func viewDidLoad() {
-        
-        
         super.viewDidLoad()
         searchBar.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
@@ -40,6 +38,15 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     //This refreshes the view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //must refresh these indexes in case eventsClass was edited
+        savedEventIndexes = []
+        for index in 0..<eventsClass.count {
+            if eventsClass[index].eventIsSaved {
+                savedEventIndexes.append(index)
+            }
+        }
+        
         collectionView.reloadData()
     }
     
@@ -48,7 +55,7 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     //Function to create a certain amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //return self.eventsVar.eventNames.count
-        return savedEventsClass.count
+        return savedEventIndexes.count
     }
     
     
@@ -57,16 +64,16 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell2", for: indexPath) as! SavedEventsCollectionViewCell
         
-        
         //Setting all the labels, title and image are pulled from eventsClass
-        cell.imageView?.image = savedEventsClass[indexPath.row].eventImage
-        cell.titleLabel?.text = savedEventsClass[indexPath.row].eventName
-        cell.filterLabel.text = savedEventsClass[indexPath.row].eventFilter
-        cell.addressButtonOutlet.setTitle(savedEventsClass[indexPath.row].eventAddress, for: UIControlState.normal)
-        cell.dateLabel.text = savedEventsClass[indexPath.row].eventDate
-        cell.descriptionLabel.text = savedEventsClass[indexPath.row].eventDesc
-        cell.priceLabel.text = savedEventsClass[indexPath.row].eventPrice
+        cell.imageView?.image = eventsClass[savedEventIndexes[indexPath.row]].eventImage
+        cell.titleLabel?.text = eventsClass[savedEventIndexes[indexPath.row]].eventName
+        cell.filterLabel.text = eventsClass[savedEventIndexes[indexPath.row]].eventFilter
+        cell.addressButtonOutlet.setTitle(eventsClass[savedEventIndexes[indexPath.row]].eventAddress, for: UIControlState.normal)
+        cell.dateLabel.text = eventsClass[savedEventIndexes[indexPath.row]].eventDate
+        cell.descriptionLabel.text = eventsClass[savedEventIndexes[indexPath.row]].eventDesc
+        cell.priceLabel.text = eventsClass[savedEventIndexes[indexPath.row]].eventPrice
         cell.plusLabel.text = "+"
+        cell.indexP = indexPath.row
         
         
         //Setting all the icons
@@ -74,6 +81,12 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.priceIcon.image = UIImage(named: "currency-usd copy")
         cell.addressIcon.image = UIImage(named: "earth")
         cell.detailIcon.image = UIImage(named: "format-list-bulleted")
+        
+        if eventsClass[savedEventIndexes[indexPath.row]].eventIsSaved {
+            cell.saveButtonOutlet.setImage(#imageLiteral(resourceName: "bookmarkSelected "), for: UIControlState.normal)
+        } else {
+            cell.saveButtonOutlet.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+        }
         
         
         //This creates the shadows and modifies the cards a little bit

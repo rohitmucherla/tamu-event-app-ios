@@ -18,9 +18,10 @@ import MapKit       //Importing MapKit lets us work with Apple Maps
 
 
 //Instantiating these class variables outside of a class lets you use them in every file
-var savedEventsClass = [SavedEvent]()
 var eventsClass : [Event] = []  //This is the array that is seen on the main page
 var fireClass : [Event] = []    //This is the array that is loaded from Firebase
+var savedEventIndexes : [Int] = []      //This array stores the indexes (in EventsClass) of all events that are saved
+
 
 
 
@@ -35,13 +36,11 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
     @IBOutlet weak var searchBar: UISearchBar!
     
+    
     //These are likely temporary filters but whatever
     //Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
     var filter: Character = "N"
     var fireRun = 0
-    
-    
-    //All the variables we need later, stored in a struct
 
     
     
@@ -55,10 +54,8 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         //This listens to the database and refreshes the view whenever it changes
         EventRef.observe(.value, with: { snapshot in
-            
             eventsClass.removeAll()
             fireClass.removeAll()
-            
             for item in snapshot.children {
                 let loadedEvent = Event(snapshot: item as! DataSnapshot)
                 fireClass.append(loadedEvent)
@@ -66,12 +63,21 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             eventsClass = self.filterEventArray(rawEvents: fireClass)
             self.refreshView()
         })
-        
     }
+    
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        collectionView.reloadData()
+    }
+    
+    
     
     @IBAction func authDidPress(_ sender: UIBarButtonItem) {
         self.performSegue(withIdentifier: "showAuthPage", sender: self)
     }
+    
+    
     
     //This function filters the array of events
     func filterEventArray(rawEvents: [Event]) -> [Event]{
@@ -84,6 +90,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         return filteredEvents
     }
+    
     
     
     //This function refreshes the view
@@ -133,6 +140,12 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.addressIcon.image = UIImage(named: "earth")
         cell.detailIcon.image = UIImage(named: "format-list-bulleted")
         
+        //Setting the necessary image for the savedButton
+        if eventsClass[indexPath.row].eventIsSaved {
+            cell.saveButton.setImage(#imageLiteral(resourceName: "bookmarkSelected "), for: UIControlState.normal)
+        } else {
+            cell.saveButton.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+        }
         
         //This creates the shadows and modifies the cards a little bit
         cell.contentView.layer.cornerRadius = 2.0
@@ -182,12 +195,3 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
 }
-
-
-
-
-
-/*override func didReceiveMemoryWarning() {
- super.didReceiveMemoryWarning()
- // Dispose of any resources that can be recreated.
- }*/

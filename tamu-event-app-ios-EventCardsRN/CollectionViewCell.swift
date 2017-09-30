@@ -39,7 +39,20 @@ class CollectionViewCell: UICollectionViewCell {
     //This is for the save button, it isn't finished yet
     @IBAction func saveAction(_ sender: UIButton) {
         
-        savedEventsClass.append(SavedEvent(name: eventsClass[indexP].eventName, image: eventsClass[indexP].eventImage, date: eventsClass[indexP].eventDate, price: eventsClass[indexP].eventPrice, address: eventsClass[indexP].eventAddress, desc: eventsClass[indexP].eventDesc, filter: eventsClass[indexP].eventFilter, galleryPics: eventsClass[indexP].eventGalleryPics, addressStreet: eventsClass[indexP].eventAddressStreet, city: eventsClass[indexP].eventCity, state: eventsClass[indexP].eventState))
+        if eventsClass[indexP].eventIsSaved {
+            eventsClass[indexP].eventIsSaved = false
+            saveButton.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+            for index in 0..<savedEventIndexes.count {
+                if indexP == savedEventIndexes[index] {
+                    savedEventIndexes.remove(at: index)
+                    break
+                }
+            }
+        } else {
+            eventsClass[indexP].eventIsSaved = true
+            savedEventIndexes.append(indexP)
+            saveButton.setImage(#imageLiteral(resourceName: "bookmarkSelected "), for: UIControlState.normal)
+        }
         
         //UserDefaults.standard.set(isBookmarked, forKey: "saveButton")
         //UserDefaults.standard.synchronize()

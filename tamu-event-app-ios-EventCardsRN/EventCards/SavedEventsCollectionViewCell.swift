@@ -29,4 +29,18 @@ class SavedEventsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var filterLabel: UILabel!
+    @IBOutlet weak var saveButtonOutlet: UIButton!
+    
+    var indexP = 0
+    
+    @IBAction func saveButtonAction(_ sender: Any) {
+        if eventsClass[savedEventIndexes[indexP]].eventIsSaved {
+            eventsClass[savedEventIndexes[indexP]].eventIsSaved = false;
+            savedEventIndexes.remove(at: indexP)
+            saveButtonOutlet.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+        } else {
+            
+        }
+    }
+    
 }
