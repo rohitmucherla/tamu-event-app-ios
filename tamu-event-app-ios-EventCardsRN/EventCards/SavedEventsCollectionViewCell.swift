@@ -37,7 +37,7 @@ class SavedEventsCollectionViewCell: UICollectionViewCell {
         if eventsClass[savedEventIndexes[indexP]].eventIsSaved {
             eventsClass[savedEventIndexes[indexP]].eventIsSaved = false;
             savedEventIndexes.remove(at: indexP)
-            saveButtonOutlet.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+            saveButtonOutlet.setImage(#imageLiteral(resourceName: "StarIconDeselected"), for: UIControlState.normal)
         } else {
             
         }

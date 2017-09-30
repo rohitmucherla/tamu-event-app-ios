@@ -68,6 +68,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     override func viewWillAppear(_ animated: Bool) {
+        searchBar.backgroundImage = UIImage()
         collectionView.reloadData()
     }
     
@@ -142,18 +143,18 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         //Setting the necessary image for the savedButton
         if eventsClass[indexPath.row].eventIsSaved {
-            cell.saveButton.setImage(#imageLiteral(resourceName: "bookmarkSelected "), for: UIControlState.normal)
+            cell.saveButton.setImage(#imageLiteral(resourceName: "StarIconSelected"), for: UIControlState.normal)
         } else {
-            cell.saveButton.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+            cell.saveButton.setImage(#imageLiteral(resourceName: "StarIconDeselected"), for: UIControlState.normal)
         }
         
         //This creates the shadows and modifies the cards a little bit
-        cell.contentView.layer.cornerRadius = 2.0
+        cell.contentView.layer.cornerRadius = 4.0
         cell.contentView.layer.borderWidth = 1.0
         cell.contentView.layer.borderColor = UIColor.clear.cgColor
         cell.contentView.layer.masksToBounds = true
         cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 2.0)
+        cell.layer.shadowOffset = CGSize(width: 0, height: 3.0)
         cell.layer.shadowRadius = 2.0
         cell.layer.shadowOpacity = 1.0
         cell.layer.masksToBounds = false
