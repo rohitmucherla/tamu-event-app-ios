@@ -38,6 +38,7 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     //This refreshes the view
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        searchBar.backgroundImage = UIImage()
         
         //must refresh these indexes in case eventsClass was edited
         savedEventIndexes = []
@@ -54,7 +55,6 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
     
     //Function to create a certain amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return self.eventsVar.eventNames.count
         return savedEventIndexes.count
     }
     
@@ -83,9 +83,9 @@ class SavedEventsViewController: UIViewController, UICollectionViewDelegate, UIC
         cell.detailIcon.image = UIImage(named: "format-list-bulleted")
         
         if eventsClass[savedEventIndexes[indexPath.row]].eventIsSaved {
-            cell.saveButtonOutlet.setImage(#imageLiteral(resourceName: "bookmarkSelected "), for: UIControlState.normal)
+            cell.saveButtonOutlet.setImage(#imageLiteral(resourceName: "StarIconSelected"), for: UIControlState.normal)
         } else {
-            cell.saveButtonOutlet.setImage(#imageLiteral(resourceName: "bookmarkDeselected "), for: UIControlState.normal)
+            cell.saveButtonOutlet.setImage(#imageLiteral(resourceName: "StarIconDeselected"), for: UIControlState.normal)
         }
         
         
