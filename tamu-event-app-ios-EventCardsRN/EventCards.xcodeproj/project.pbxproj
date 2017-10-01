@@ -24,7 +24,7 @@
 		9028913C1E6140E100454BA2 /* NewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9028913B1E6140E100454BA2 /* NewViewController.swift */; };
 		9036D1C11E67676F006E9A63 /* backTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9036D1C01E67676F006E9A63 /* backTableVC.swift */; };
 		9036D1C41E676F67006E9A63 /* SideBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9036D1C21E676F67006E9A63 /* SideBarTableViewCell.swift */; };
-		9036D1C51E676F67006E9A63 /* SideBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9036D1C31E676F67006E9A63 /* SideBarTableViewCell.xib */; };
+		906BD3CF1F80A105005E1744 /* ApplyFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 906BD3CE1F80A105005E1744 /* ApplyFilterCell.swift */; };
 		907F48E01E777886000086A9 /* SavedEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907F48DF1E777886000086A9 /* SavedEventsViewController.swift */; };
 		907F48E21E777F93000086A9 /* SavedEventsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 907F48E11E777F93000086A9 /* SavedEventsCollectionViewCell.swift */; };
 		908A540A1F801CAB007F4B98 /* SWRevealViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 909BF3A81F801B4F0085D320 /* SWRevealViewController.m */; };
@@ -82,7 +82,7 @@
 		9036D1BC1E675150006E9A63 /* EventCards-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EventCards-Bridging-Header.h"; sourceTree = "<group>"; };
 		9036D1C01E67676F006E9A63 /* backTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = backTableVC.swift; sourceTree = "<group>"; };
 		9036D1C21E676F67006E9A63 /* SideBarTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideBarTableViewCell.swift; sourceTree = "<group>"; };
-		9036D1C31E676F67006E9A63 /* SideBarTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SideBarTableViewCell.xib; sourceTree = "<group>"; };
+		906BD3CE1F80A105005E1744 /* ApplyFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplyFilterCell.swift; sourceTree = "<group>"; };
 		907F48DF1E777886000086A9 /* SavedEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedEventsViewController.swift; sourceTree = "<group>"; };
 		907F48E11E777F93000086A9 /* SavedEventsCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SavedEventsCollectionViewCell.swift; sourceTree = "<group>"; };
 		909BF3A71F801B4F0085D320 /* SWRevealViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SWRevealViewController.h; sourceTree = "<group>"; };
@@ -132,6 +132,7 @@
 				90A7E3741E6E583200F75701 /* MapViewController.swift */,
 				9003C20E1E6BCF73003E484F /* imageViewController.swift */,
 				9036D1C01E67676F006E9A63 /* backTableVC.swift */,
+				906BD3CE1F80A105005E1744 /* ApplyFilterCell.swift */,
 				66E448961F49E39C005A17E9 /* AuthViewController.swift */,
 				909BF3A71F801B4F0085D320 /* SWRevealViewController.h */,
 				909BF3A81F801B4F0085D320 /* SWRevealViewController.m */,
@@ -143,7 +144,6 @@
 			isa = PBXGroup;
 			children = (
 				90A1A9B31E652D8200527521 /* Main.storyboard */,
-				9036D1C31E676F67006E9A63 /* SideBarTableViewCell.xib */,
 				902891141E613EC000454BA2 /* LaunchScreen.storyboard */,
 			);
 			name = Layouts;
@@ -377,7 +377,6 @@
 				90A1A9B51E652D8200527521 /* Main.storyboard in Resources */,
 				902891161E613EC000454BA2 /* LaunchScreen.storyboard in Resources */,
 				663B113F1E841753001B6C54 /* GoogleService-Info.plist in Resources */,
-				9036D1C51E676F67006E9A63 /* SideBarTableViewCell.xib in Resources */,
 				902891131E613EC000454BA2 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -580,6 +579,7 @@
 				6607138C1F0894350025F1B9 /* DataStuff.swift in Sources */,
 				908A540A1F801CAB007F4B98 /* SWRevealViewController.m in Sources */,
 				907F48E21E777F93000086A9 /* SavedEventsCollectionViewCell.swift in Sources */,
+				906BD3CF1F80A105005E1744 /* ApplyFilterCell.swift in Sources */,
 				9028913A1E6140B900454BA2 /* CollectionViewCell.swift in Sources */,
 				9036D1C41E676F67006E9A63 /* SideBarTableViewCell.swift in Sources */,
 				9028913C1E6140E100454BA2 /* NewViewController.swift in Sources */,
