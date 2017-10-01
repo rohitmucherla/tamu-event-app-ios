@@ -22,6 +22,9 @@ var eventsClass : [Event] = []  //This is the array that is seen on the main pag
 var fireClass : [Event] = []    //This is the array that is loaded from Firebase
 var savedEventIndexes : [Int] = []      //This array stores the indexes (in EventsClass) of all events that are saved
 
+//Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
+var filter: [Character] = ["N"]
+
 
 
 
@@ -35,11 +38,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    
-    //These are likely temporary filters but whatever
-    //Filters: E = Fun Stuff, B = Boring Stuff, F = Food, A = Academics, N = No filter
-    var filter: Character = "N"
+
     var fireRun = 0
 
     
@@ -51,6 +50,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         buttonTo2.target = self.revealViewController()
         buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshView), name: NSNotification.Name(rawValue: "refreshVC"), object: nil)
         
         //This listens to the database and refreshes the view whenever it changes
         EventRef.observe(.value, with: { snapshot in
@@ -67,7 +67,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     
+    //function that will happen everytime a user navigates to the page
     override func viewWillAppear(_ animated: Bool) {
+        eventsClass = self.filterEventArray(rawEvents: fireClass)
         searchBar.backgroundImage = UIImage()
         collectionView.reloadData()
     }
@@ -86,7 +88,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
         var filteredEvents : [Event] = []
         for event in rawEvents {
             for char in event.eventFilter.characters {
-                if char == filter {filteredEvents.append(event)}
+                if filter.contains(char) {filteredEvents.append(event)}
             }
         }
         return filteredEvents
@@ -96,6 +98,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //This function refreshes the view
     func refreshView(){
+        eventsClass = self.filterEventArray(rawEvents: fireClass)
         super.viewWillAppear(true)
         self.collectionView.reloadData()
     }
@@ -104,7 +107,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //Function to create a certain amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //return self.eventsVar.eventNames.count
         return eventsClass.count
     }
     
