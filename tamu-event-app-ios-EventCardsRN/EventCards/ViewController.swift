@@ -28,7 +28,7 @@ var filter: [Character] = ["N"]
 
 
 
-class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate{
+class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UISearchBarDelegate, UICollectionViewDelegateFlowLayout{
     
     
     
@@ -37,7 +37,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var authButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!    //Needed an outlet to transfer data later on
     @IBOutlet weak var viewControl: UIScrollView!           //Simple scroll view lets you scroll
-    @IBOutlet weak var searchBar: UISearchBar!
 
     var fireRun = 0
 
@@ -46,7 +45,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //These add gestures and a button to the side bar
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.delegate = self
+        collectionView.delegate = self
         self.view.addGestureRecognizer(self.revealViewController().panGestureRecognizer())
         buttonTo2.target = self.revealViewController()
         buttonTo2.action = #selector(SWRevealViewController.revealToggle(_:))
@@ -70,7 +69,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     //function that will happen everytime a user navigates to the page
     override func viewWillAppear(_ animated: Bool) {
         eventsClass = self.filterEventArray(rawEvents: fireClass)
-        searchBar.backgroundImage = UIImage()
         collectionView.reloadData()
     }
     
@@ -107,62 +105,77 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //Function to create a certain amount of cards
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return eventsClass.count
+        return eventsClass.count+1
     }
     
     
     
     //This is the function for what's on the cards
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
-        
-        
-        //Setting all the labels, title and image are pulled from eventsClass up top
-        
-        //This loads image from Firebase and sets it as eventImage
-        cell.imageView.sd_setImage(with: eventsClass[indexPath.row].eventRef , placeholderImage: cell.imageView?.image) { (image, error, cache, url) in
-            if cell.imageView.image != nil {
-                eventsClass[indexPath.row].eventImage = cell.imageView.image!
-            }
-        }
-        
-        
-        cell.titleLabel?.text = eventsClass[indexPath.row].eventName
-        cell.filterLabel.text = eventsClass[indexPath.row].eventFilter
-        cell.addressButtonOutlet.setTitle(eventsClass[indexPath.row].eventAddress, for: UIControlState.normal)
-        cell.dateLabel.text = eventsClass[indexPath.row].eventDate
-        cell.descriptionLabel.text = eventsClass[indexPath.row].eventDesc
-        cell.priceLabel.text = eventsClass[indexPath.row].eventPrice
-        cell.plusLabel.text = "+"
-        cell.indexP = indexPath.row
-        
-        
-        //Setting all the icons
-        cell.shareImage.image = UIImage(named: "shareButton")
-        cell.priceIcon.image = UIImage(named: "currency-usd copy")
-        cell.addressIcon.image = UIImage(named: "earth")
-        cell.detailIcon.image = UIImage(named: "format-list-bulleted")
-        
-        //Setting the necessary image for the savedButton
-        if eventsClass[indexPath.row].eventIsSaved {
-            cell.saveButton.setImage(#imageLiteral(resourceName: "StarIconSelected"), for: UIControlState.normal)
+        if indexPath.row == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchCell", for: indexPath) as! searchCollectionViewCell
+            return cell
         } else {
-            cell.saveButton.setImage(#imageLiteral(resourceName: "StarIconDeselected"), for: UIControlState.normal)
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell
+            
+            
+            //Setting all the labels, title and image are pulled from eventsClass up top
+            
+            //This loads image from Firebase and sets it as eventImage
+            cell.imageView.sd_setImage(with: eventsClass[indexPath.row-1].eventRef , placeholderImage: cell.imageView?.image) { (image, error, cache, url) in
+                if cell.imageView.image != nil {
+                    eventsClass[indexPath.row-1].eventImage = cell.imageView.image!
+                }
+            }
+            
+            
+            cell.titleLabel?.text = eventsClass[indexPath.row-1].eventName
+            cell.filterLabel.text = eventsClass[indexPath.row-1].eventFilter
+            cell.addressButtonOutlet.setTitle(eventsClass[indexPath.row-1].eventAddress, for: UIControlState.normal)
+            cell.dateLabel.text = eventsClass[indexPath.row-1].eventDate
+            cell.descriptionLabel.text = eventsClass[indexPath.row-1].eventDesc
+            cell.priceLabel.text = eventsClass[indexPath.row-1].eventPrice
+            cell.plusLabel.text = "+"
+            cell.indexP = indexPath.row-1
+            
+            
+            //Setting all the icons
+            cell.shareImage.image = UIImage(named: "shareButton")
+            cell.priceIcon.image = UIImage(named: "currency-usd copy")
+            cell.addressIcon.image = UIImage(named: "earth")
+            cell.detailIcon.image = UIImage(named: "format-list-bulleted")
+            
+            //Setting the necessary image for the savedButton
+            if eventsClass[indexPath.row-1].eventIsSaved {
+                cell.saveButton.setImage(#imageLiteral(resourceName: "StarIconSelected"), for: UIControlState.normal)
+            } else {
+                cell.saveButton.setImage(#imageLiteral(resourceName: "StarIconDeselected"), for: UIControlState.normal)
+            }
+            
+            //This creates the shadows and modifies the cards a little bit
+            cell.contentView.layer.cornerRadius = 4.0
+            cell.contentView.layer.borderWidth = 1.0
+            cell.contentView.layer.borderColor = UIColor.clear.cgColor
+            cell.contentView.layer.masksToBounds = false
+            cell.layer.shadowColor = UIColor.gray.cgColor
+            cell.layer.shadowOffset = CGSize(width: 0, height: 1.0)
+            cell.layer.shadowRadius = 4.0
+            cell.layer.shadowOpacity = 1.0
+            cell.layer.masksToBounds = false
+            cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
+            
+            return cell
         }
-        
-        //This creates the shadows and modifies the cards a little bit
-        cell.contentView.layer.cornerRadius = 4.0
-        cell.contentView.layer.borderWidth = 1.0
-        cell.contentView.layer.borderColor = UIColor.clear.cgColor
-        cell.contentView.layer.masksToBounds = true
-        cell.layer.shadowColor = UIColor.lightGray.cgColor
-        cell.layer.shadowOffset = CGSize(width: 0, height: 3.0)
-        cell.layer.shadowRadius = 2.0
-        cell.layer.shadowOpacity = 1.0
-        cell.layer.masksToBounds = false
-        cell.layer.shadowPath = UIBezierPath(roundedRect: cell.bounds, cornerRadius: cell.contentView.layer.cornerRadius).cgPath
-
-        return cell
+    }
+    
+    
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if indexPath.row == 0 {
+            return CGSize(width: 350, height: 56)
+        } else {
+            return CGSize(width: 350, height: 450)
+        }
     }
 
     
@@ -186,14 +199,14 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             
             //Actually passing the data from this file to the Event Page
-            vc.titleLabelE = eventsClass[indexPath.row].eventName
-            vc.topImageE = eventsClass[indexPath.row].eventImage
+            vc.titleLabelE = eventsClass[indexPath.row-1].eventName
+            vc.topImageE = eventsClass[indexPath.row-1].eventImage
 
-            vc.dateLabelE = eventsClass[indexPath.row].eventDate
-            vc.priceLabelE = eventsClass[indexPath.row].eventPrice
-            vc.addressLabelE = eventsClass[indexPath.row].eventAddress
-            vc.detailsLabelE = eventsClass[indexPath.row].eventDesc
-            vc.indexP = indexPath.row
+            vc.dateLabelE = eventsClass[indexPath.row-1].eventDate
+            vc.priceLabelE = eventsClass[indexPath.row-1].eventPrice
+            vc.addressLabelE = eventsClass[indexPath.row-1].eventAddress
+            vc.detailsLabelE = eventsClass[indexPath.row-1].eventDesc
+            vc.indexP = indexPath.row-1
             
         }
     }
