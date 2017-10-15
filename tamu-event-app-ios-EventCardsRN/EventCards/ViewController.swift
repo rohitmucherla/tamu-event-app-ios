@@ -95,7 +95,7 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     
     //This function refreshes the view
-    func refreshView(){
+    @objc func refreshView(){
         eventsClass = self.filterEventArray(rawEvents: fireClass)
         super.viewWillAppear(true)
         self.collectionView.reloadData()
@@ -130,7 +130,6 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             
             cell.titleLabel?.text = eventsClass[indexPath.row-1].eventName
-            cell.filterLabel.text = eventsClass[indexPath.row-1].eventFilter
             cell.addressButtonOutlet.setTitle(eventsClass[indexPath.row-1].eventAddress, for: UIControlState.normal)
             cell.dateLabel.text = eventsClass[indexPath.row-1].eventDate
             cell.descriptionLabel.text = eventsClass[indexPath.row-1].eventDesc
@@ -172,9 +171,9 @@ class ViewController: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row == 0 {
-            return CGSize(width: 350, height: 56)
+            return CGSize(width: collectionView.contentSize.width - 16, height: 45)
         } else {
-            return CGSize(width: 350, height: 450)
+            return CGSize(width: collectionView.contentSize.width - 22, height: 450)
         }
     }
 
